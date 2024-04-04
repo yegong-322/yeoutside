@@ -18,20 +18,20 @@
             </thead>
 
             <tbody>
-            <!-- CONTENTS !-->
-            <tr th:each="board : ${boardList}">
-                <td>
-                    <span th:text="${board.id}"></span>
-                </td>
-                <td>
-                    <a th:href="@{'/board/detail/' + ${board.id}}">
-                        <span th:text="${board.title}"></span>
-                    </a>
-                </td>
-                <td>
-                    <span th:text="${board.writer}"></span>
-                </td>
-            </tr>
+                <!-- CONTENTS !-->
+                <tr th:each="board : ${boardList}">
+                    <td>
+                        <span th:text="${board.id}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{'/board/detail/' + ${board.id}}">
+                            <span th:text="${board.title}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <span th:text="${board.writer}"></span>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

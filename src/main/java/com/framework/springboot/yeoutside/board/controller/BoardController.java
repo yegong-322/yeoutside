@@ -57,7 +57,7 @@ public class BoardController {
      * 게시글 저장
      * @param boardDto - 게시글 정보
      *                   <p>title : 제목</p>
-     *                   <p>title : 내용</p>
+     *                   <p>content : 내용</p>
      */
     @PostMapping("/api/board/write")
     public String boardWrite(BoardDto boardDto) throws Exception {

@@ -5,13 +5,13 @@
     <title>WRITE</title>
 </head>
 <body>
-    <form th:action="@{'/api/board/write'}" method="post">
-        제목 : <input type="text" name="title"> <br>
-        작성자 : <input type="text" name="writer"> <br>
-        <textarea name="content"></textarea><br>
+<form th:action="@{'/api/board/write'}" method="post">
+    제목 : <input type="text" name="title"> <br>
+    작성자 : <input type="text" name="writer"> <br>
+    <textarea name="content"></textarea><br>
 
-        <input type="submit" value="등록">
-        <a th:href="@{/board/list}">목록</a>
-    </form>
+    <input type="submit" value="등록">
+    <a th:href="@{/board/list}">목록</a>
+</form>
 </body>
-</html>다
+</html>
