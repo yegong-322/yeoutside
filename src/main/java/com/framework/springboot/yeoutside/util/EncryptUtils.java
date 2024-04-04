@@ -8,7 +8,7 @@ import java.security.MessageDigest;
  * 암호화 Util class
 */
 @Component
-public class EncryptUtil {
+public class EncryptUtils {
 
     /**
      * SHA256 암호화

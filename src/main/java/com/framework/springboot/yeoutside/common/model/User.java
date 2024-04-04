@@ -1,4 +1,4 @@
-package com.framework.springboot.yeoutside.model;
+package com.framework.springboot.yeoutside.common.model;
 
 import jakarta.persistence.*;
 import lombok.*;

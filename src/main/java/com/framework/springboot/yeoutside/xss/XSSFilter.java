@@ -1,19 +1,12 @@
 package com.framework.springboot.yeoutside.xss;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.framework.springboot.yeoutside.util.XssUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * XXS 방어 Filter class

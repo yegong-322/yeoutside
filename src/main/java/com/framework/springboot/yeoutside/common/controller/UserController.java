@@ -1,16 +1,13 @@
 package com.framework.springboot.yeoutside.common.controller;
 
-import com.framework.springboot.yeoutside.board.dto.BoardDto;
 import com.framework.springboot.yeoutside.common.service.UserService;
-import com.framework.springboot.yeoutside.model.User;
-import jakarta.persistence.EntityNotFoundException;
+import com.framework.springboot.yeoutside.common.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 회원 Controller class

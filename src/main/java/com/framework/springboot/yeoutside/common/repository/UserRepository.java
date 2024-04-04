@@ -1,6 +1,6 @@
 package com.framework.springboot.yeoutside.common.repository;
 
-import com.framework.springboot.yeoutside.model.User;
+import com.framework.springboot.yeoutside.common.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

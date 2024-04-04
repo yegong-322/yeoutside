@@ -1,4 +1,4 @@
-package com.framework.springboot.yeoutside.model;
+package com.framework.springboot.yeoutside.common.model;
 
 /**
  * 회원 권한 enum

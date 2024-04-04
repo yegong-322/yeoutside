@@ -3,7 +3,6 @@ package com.framework.springboot.yeoutside.board.service;
 import com.framework.springboot.yeoutside.board.dto.BoardDto;
 import com.framework.springboot.yeoutside.board.model.Board;
 import com.framework.springboot.yeoutside.board.repository.BoardRepository;
-import com.framework.springboot.yeoutside.model.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
