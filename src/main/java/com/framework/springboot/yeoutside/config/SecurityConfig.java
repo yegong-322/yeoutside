@@ -1,5 +1,7 @@
 package com.framework.springboot.yeoutside.config;
 
+import com.framework.springboot.yeoutside.security.CustomAuthFailureHandler;
+import com.framework.springboot.yeoutside.security.CustomAuthSuccessHandler;
 import com.framework.springboot.yeoutside.security.CustomSessionExpiredStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +41,9 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")
-                        .defaultSuccessUrl("/board/list"))  // 성공 시, board/list 페이지로 이동함
+                        .loginProcessingUrl("/user/login")
+                        .successHandler(customLoginSuccessHandler())
+                        .failureHandler(customLoginFailureHandler()))
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                         .logoutSuccessUrl("/board/list")
@@ -52,6 +56,24 @@ public class SecurityConfig {
                         .expiredSessionStrategy(sessionInformationExpiredStrategy()));  // 세션이 만료되었을 때 어떻게 처리할지
 
         return httpSecurity.build();
+    }
+
+    /**
+     * 로그인 성공 시 호출되는 Handler
+     */
+    @Bean
+    public CustomAuthSuccessHandler customLoginSuccessHandler() {
+
+        return new CustomAuthSuccessHandler();
+    }
+
+    /**
+     * 로그인 실패 시 호출되는 Handler
+     */
+    @Bean
+    public CustomAuthFailureHandler customLoginFailureHandler() {
+
+        return new CustomAuthFailureHandler();
     }
 
     /**
