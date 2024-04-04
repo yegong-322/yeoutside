@@ -2,9 +2,15 @@ package com.framework.springboot.yeoutside.common.service;
 
 import com.framework.springboot.yeoutside.common.repository.UserRepository;
 import com.framework.springboot.yeoutside.model.User;
+import com.framework.springboot.yeoutside.util.EncryptUtil;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
+import java.util.Optional;
 
 /**
  * 회원 Service class
@@ -28,6 +34,10 @@ public class UserService {
 
         try
         {
+            // 비밀번호 암호화
+            EncryptUtil encryptUtil = new EncryptUtil();
+            user.setUserPw(encryptUtil.sha256(user.getUserPw()));
+
             userRepository.save(user);  // 회원 정보 저장
         }
         catch(Exception e)
@@ -36,5 +46,25 @@ public class UserService {
 
             throw new Exception(e.getMessage());
         }
+    }
+
+    /**
+     * 로그인 체크
+     * @param user 회원 ID
+     */
+    public String loginCheck(User user) throws Exception {
+
+       Optional<User> result = userRepository.findById(user.getUserId());
+
+       if(result.isPresent())
+       {
+           EncryptUtil encryptUtil = new EncryptUtil();
+           if(encryptUtil.sha256(user.getUserPw()).equals(result.get().getUserPw()))
+           {
+               return "equals";
+           }
+       }
+
+        return "different";
     }
 }

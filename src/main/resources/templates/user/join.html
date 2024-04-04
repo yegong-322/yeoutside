@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JOIN</title>
+</head>
+<body>
+<form th:action="@{'/api/user/join'}" method="post">
+    ID : <input type="text" name="userId"> <br>
+    PW : <input type="password" name="userPw"> <br>
+    이름 : <input type="text" name="userNm"> <br>
+    권한 : <input type="text" name="userRole"> <br>
+    <input type="submit" value="가입">
+</form>
+</body>
+</html>

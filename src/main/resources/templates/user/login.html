@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+
+    <script th:src="@{/js/jquery.3.7.1.js}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#login-btn').on('click', function(e) {
+                e.preventDefault();
+
+                const data = {
+                    userId : $('#userId').val(),
+                    userPw : $('#userPw').val()
+                }
+
+                $.ajax({
+                    url: "/api/user/login/check",
+                    type: "POST",
+                    data,
+                    dataType: 'text',
+                    success: function(result) {
+                        if(null != result && '' !== result)
+                        {
+                            if('equals' === result)
+                            {
+                                location.replace('/board/list');
+                            }
+                            else if('different' === result)
+                            {
+                                alert('ID/PW가 올바르지 않습니다.')
+                            }
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e)
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form id="login-form" method="get">
+    ID : <input type="text" id="userId" name="userId"> <br>
+    PW : <input type="text" id="userPw" name="userPw"> <br>
+    <input type="button" id="login-btn" value="로그인">
+</form>
+</body>
+</html>

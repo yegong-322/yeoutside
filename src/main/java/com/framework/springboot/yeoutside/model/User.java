@@ -1,16 +1,13 @@
 package com.framework.springboot.yeoutside.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * 회원 모델 class
  */
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 무분별한 객체 생성 방지
+@Data
+@NoArgsConstructor()  // 무분별한 객체 생성 방지
 @Entity
 @Table(name = "user")
 public class User {
