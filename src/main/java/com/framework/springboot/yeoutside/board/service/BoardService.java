@@ -5,6 +5,8 @@ import com.framework.springboot.yeoutside.board.model.Board;
 import com.framework.springboot.yeoutside.board.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,6 +58,12 @@ public class BoardService {
 
         try
         {
+            // 세션에 저장된 로그인 유저 정보
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserDetails userDetails = (UserDetails)principal;
+            String username = userDetails.getUsername();
+
+            boardDto.setWriter(username);  // 작성자 set
             boardRepository.save(boardDto.toEntity()).getId();  // 게시글 저장
         }
         catch(Exception e)

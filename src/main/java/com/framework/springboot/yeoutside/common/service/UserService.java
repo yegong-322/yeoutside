@@ -5,6 +5,7 @@ import com.framework.springboot.yeoutside.common.model.User;
 import com.framework.springboot.yeoutside.util.EncryptUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,8 +33,10 @@ public class UserService {
         try
         {
             // 비밀번호 암호화
-            EncryptUtils encryptUtil = new EncryptUtils();
-            user.setUserPw(encryptUtil.sha256(user.getUserPw()));
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+//            EncryptUtils encryptUtil = new EncryptUtils();
+//            user.setUserPw(encryptUtil.sha256(user.getUserPw()));
 
             userRepository.save(user);  // 회원 정보 저장
         }
@@ -55,11 +58,18 @@ public class UserService {
 
        if(result.isPresent())
        {
-           EncryptUtils encryptUtil = new EncryptUtils();
-           if(encryptUtil.sha256(user.getUserPw()).equals(result.get().getUserPw()))
+
+           // 비밀번호 암호화
+           BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+           if(passwordEncoder.encode(user.getUserPw()).equals(result.get().getUserPw()))
            {
                return "equals";
            }
+//           EncryptUtils encryptUtil = new EncryptUtils();
+//           if(encryptUtil.sha256(user.getUserPw()).equals(result.get().getUserPw()))
+//           {
+//               return "equals";
+//           }
        }
 
         return "different";

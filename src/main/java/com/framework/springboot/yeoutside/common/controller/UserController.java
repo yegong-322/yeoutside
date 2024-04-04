@@ -55,19 +55,19 @@ public class UserController {
     /**
      * 로그인 체크
      */
-    @PostMapping("/api/user/login/check")
-    @ResponseBody
-    public String userLoginCheck(User user) throws Exception {
-
-        if(StringUtils.isEmpty(user.getUserId()))
-        {
-            throw new Exception("ID는 필수값 입니다.");
-        }
-        if(StringUtils.isEmpty(user.getUserPw()))
-        {
-            throw new Exception("비밀번호는 필수값 입니다.");
-        }
-
-        return userService.loginCheck(user);  // 로그인 체크
-    }
+//    @PostMapping("/api/user/login/check")
+//    @ResponseBody
+//    public String userLoginCheck(User user) throws Exception {
+//
+//        if(StringUtils.isEmpty(user.getUserId()))
+//        {
+//            throw new Exception("ID는 필수값 입니다.");
+//        }
+//        if(StringUtils.isEmpty(user.getUserPw()))
+//        {
+//            throw new Exception("비밀번호는 필수값 입니다.");
+//        }
+//
+//        return userService.loginCheck(user);  // 로그인 체크
+//    }
 }

@@ -4,48 +4,70 @@
     <meta charset="UTF-8">
     <title>LOGIN</title>
 
-    <script th:src="@{/js/jquery.3.7.1.js}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('#login-btn').on('click', function(e) {
-                e.preventDefault();
+<!--    <script th:src="@{/js/jquery.3.7.1.js}"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        $(function() {-->
+<!--            $('#login-btn').on('click', function(e) {-->
+<!--                e.preventDefault();-->
 
-                const data = {
-                    userId : $('#userId').val(),
-                    userPw : $('#userPw').val()
-                }
+<!--                const data = {-->
+<!--                    username : $('#userId').val(),-->
+<!--                    password : $('#userPw').val()-->
+<!--                }-->
 
-                $.ajax({
-                    url: "/api/user/login/check",
-                    type: "POST",
-                    data,
-                    dataType: 'text',
-                    success: function(result) {
-                        if(null != result && '' !== result)
-                        {
-                            if('equals' === result)
-                            {
-                                location.replace('/board/list');
-                            }
-                            else if('different' === result)
-                            {
-                                alert('ID/PW가 올바르지 않습니다.')
-                            }
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e)
-                    }
-                });
-            });
-        });
-    </script>
+<!--                $.ajax({-->
+<!--                    url: "/user/login",-->
+<!--                    type: "POST",-->
+<!--                    data,-->
+<!--                    dataType: 'text',-->
+<!--                    success: function(result) {-->
+<!--                        // console.log(result);-->
+<!--                        // if(null != result && '' !== result)-->
+<!--                        // {-->
+<!--                        //     if('equals' === result)-->
+<!--                        //     {-->
+<!--                        //         location.replace('/board/list');-->
+<!--                        //     }-->
+<!--                        //     else if('different' === result)-->
+<!--                        //     {-->
+<!--                        //         alert('ID/PW가 올바르지 않습니다.')-->
+<!--                        //     }-->
+<!--                        // }-->
+<!--                    },-->
+<!--                    error: function (e) {-->
+<!--                        console.log(e)-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 </head>
 <body>
-<form id="login-form" method="get">
-    ID : <input type="text" id="userId" name="userId"> <br>
-    PW : <input type="text" id="userPw" name="userPw"> <br>
-    <input type="button" id="login-btn" value="로그인">
-</form>
+<!--    <form id="login-form" method="get">-->
+<!--        <div th:if="${param.error}">-->
+<!--            <div>-->
+<!--                사용자ID 또는 비밀번호를 확인해 주세요.-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        ID : <input type="text" id="userId" name="username"> <br>-->
+<!--        PW : <input type="text" id="userPw" name="password"> <br>-->
+<!--        <input type="button" id="login-btn" value="로그인">-->
+<!--    </form>-->
+    <form th:action="@{/user/login}" method="post">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                사용자ID 또는 비밀번호를 확인해 주세요.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">사용자ID</label>
+            <input type="text" name="username" id="username" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
 </body>
 </html>

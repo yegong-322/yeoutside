@@ -6,6 +6,15 @@
 </head>
 <body>
     <div id="wrap">
+
+        <li class="nav-item">
+            <!-- sec:authorize 속성은 사용자의 로그인 여부에 따라 요소를 출력하거나 출력하지 않게 함-->
+            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+        </li>
+
+        <br>
+
         <a th:href="@{/board/write}">글쓰기</a>
 
         <table>
