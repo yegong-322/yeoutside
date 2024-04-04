@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>LIST</title>
@@ -35,5 +35,11 @@
             </tbody>
         </table>
     </div>
+
+<!--    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">-->
+<!--        <span class="text-white mr-2 mx-2" sec:authentication="name">사용자</span>-->
+<!--        <span class="text-white mr-2 mx-2" sec:authentication="principal.authorities">권한</span>-->
+<!--        <button class="btn btn-secondary my-2 my-sm-0" type="submit">logout</button>-->
+    </form>
 </body>
 </html>
