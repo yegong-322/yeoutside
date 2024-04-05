@@ -3,12 +3,15 @@ package com.framework.springboot.yeoutside.config;
 import com.framework.springboot.yeoutside.security.CustomAuthFailureHandler;
 import com.framework.springboot.yeoutside.security.CustomAuthSuccessHandler;
 import com.framework.springboot.yeoutside.security.CustomSessionExpiredStrategy;
+import jakarta.servlet.DispatcherType;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
@@ -38,7 +41,10 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()  // 스프링시큐리티 6부터는 forward에도 기본으로 인증이 걸리게 설정되어 있어 추가함
+                        .requestMatchers("/user/join", "/api/user/join", "/user/login", "/board/list").permitAll()  // 해당 패턴은 권한 없이 접근 가능
+                        .requestMatchers("/board/write").hasRole("SYS_ADMIN")  // 해당 패턴은 권한 없이 접근 가능
+                        .anyRequest().authenticated())  // 나머지 요청은 인증확인
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")
                         .loginProcessingUrl("/user/login")

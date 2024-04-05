@@ -1,6 +1,5 @@
 package com.framework.springboot.yeoutside.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.framework.springboot.yeoutside.xss.XSSFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -13,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor  // 생성자 주입을 임의의 코드 없이 자동으로 설정해줌
 @Configuration
 public class WebMvcConfig {
-
-    private final ObjectMapper objectMapper;
 
     /**
      * Xss 필터 적용

@@ -7,7 +7,7 @@ import lombok.*;
  * 회원 모델 class
  */
 @Data
-@NoArgsConstructor()  // 무분별한 객체 생성 방지
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
